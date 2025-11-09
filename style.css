@@ -10,7 +10,14 @@
     
 
 }
-
+@media (max-width: 600px) {
+    
+    .video-container video {
+        /* Na mobilu chceme, aby video zabralo téměř celou šířku */
+        width: 95vw; /* Např. 95% šířky okna */
+        max-width: none; /* Ignorujeme původní max-width 700px */
+    }
+}
 
 * {
     margin: 0px;
