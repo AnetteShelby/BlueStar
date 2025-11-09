@@ -1,0 +1,40 @@
+
+/*
+ * Nastavte cestu k Vašemu PNG obrázku! 
+ * Předpokládáme, že obrázek je ve složce 'obrazky' a jmenuje se 'moje_pozadi.png'.
+ */
+body {
+    /* Nastavení cesty k Vašemu PNG pozadí */
+    background-image: url('pozadi3.jpg'); 
+    
+    /* Vlastnosti pro pokrytí celé obrazovky a fixní pozici */
+    background-size: cover; /* Roztáhne obrázek, aby pokryl celou plochu */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Zajišťuje, že pozadí se nehýbe při scrollování */
+    
+    /* Zajištění, že body zabírá celou výšku okna prohlížeče */
+    min-height: 160vh;
+    margin: 0; /* Odstranění výchozích okrajů */
+    padding: 0;
+    
+    /* Flexbox pro centrování obsahu na stránce */
+    display: flex;
+    justify-content: center; /* Horizontální centrování (doprostřed šířky) */
+    align-items: center; /* Vertikální centrování (doprostřed výšky) */
+}
+
+/* Kontejner pro video (není nutný, ale dobrý pro lepší kontrolu) */
+.video-container {
+    /* Případně zde můžete přidat stín nebo okraj kolem videa */
+    height: 960px;
+    height: 540px;
+}
+
+/* Nastavení samotného video elementu */
+video {
+    /* Zde se uplatní nastavení z HTML: width="700" */
+    display: block; /* Zajištění, že se video chová jako blokový element */
+    max-width: 90%; /* Zajištění responzivity (aby video nepřeteklo na malých obrazovkách) */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Malý stín pro lepší oddělení od pozadí */
+}

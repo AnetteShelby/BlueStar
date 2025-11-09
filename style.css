@@ -1,0 +1,299 @@
+/* --- Globální a Rozměry --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=PT+Sans+Narrow:wght@400;700&display=swap');
+
+:root {
+    /* Nastavení barev z fotky */
+    --dark-bg-color: #0b0f1d;
+    --text-color: #b6d1ff;
+    --accent-color: #8c8eff00; /* Světle fialová pro akcenty */
+    
+
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    background-color: var(--dark-bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    /* Důležité: zabránit horizontálnímu scrollu, který by mohl vzniknout animacemi */
+    overflow-x: hidden; 
+}
+
+
+
+/* --- PARALLAX POZADÍ (Konečná úprava) --- */
+#parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* KLÍČOVÁ ZMĚNA 1: Výška je pevně daná, aby pokryla celý scroll */
+    min-height: 5400px; 
+    
+    background-image: url('Untitled_Artwork\ 1\ \(2\).png'); 
+    
+    /* KLÍČOVÁ ZMĚNA 2: Nastavíme šířku na 100% a výšku na auto, aby se zachoval poměr stran */
+    background-size: 100% auto; 
+    
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+
+
+/* Styly pro sekce v souboru style.css */
+.page-section {
+    height:1080px; 
+    width: 100%;
+    position: relative;
+    
+    /* KLÍČOVÁ ZMĚNA: Zvýšení horního odsazení (padding-top) */
+    padding: 10px 5%; /* Zvýšeno z 250px na 350px pro posun textu dolů */
+    
+
+    display: flex;
+    align-items: center; /* TOTO CENTRUJE OBSAH VERTIKÁLNĚ */
+
+}
+
+/* Specifické odsazení pro první sekci, aby text seděl k helmě */
+#projekt {
+    /* Můžete zkusit 350px nebo i více (např. 450px) */
+    padding-top: 1000px; 
+
+    /* Pokud chcete, aby text seděl na úrovni helmy */
+    align-items:center; /* Zarovná text nahoru od padding-top */
+}
+
+/* Styly pro textový kontejner */
+.content-wrapper {
+    max-width: 450px; /* Omezení šířky textu */
+    z-index: 5;
+}
+
+.left-aligned {
+    margin-right: auto;
+    text-align: left;
+}
+
+/* Zajištění, že text v sekci O MNĚ se zarovná doprava */
+.right-aligned {
+    margin-left: auto; /* Tlačí box na pravou stranu */
+    text-align: right;
+}
+
+.page-section h2 {
+    font-size: 3em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    /* Opět by zde bylo potřeba nastavit font z fotky */
+}
+
+/* --- FIXOVANÁ NAVIGACE --- */
+#main-nav {
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    z-index: 100;
+    transition: opacity 0.5s;
+    background: rgba(0, 0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font: 1em;
+    opacity: 60%;
+}
+
+#main-nav.hidden {
+    opacity: 0;
+    pointer-events: none; 
+}
+
+#main-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1.1em;
+}
+
+/* style.css */
+
+.download-btn {
+    display: inline-block;
+    padding: 15px 30px; 
+    
+    background-color: transparent; /* Ponecháme průhledné pozadí */
+    color: var(--text-color);
+    
+    /* 🔑 Klíčové pro vzhled: Silnější okraj a zaoblené rohy */
+    border: 3px solid var(--text-color); 
+    border-radius: 5px; 
+    
+    text-decoration: none;
+    margin-top: 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    
+    transition: all 0.3s ease; /* Plynulá animace */
+}
+
+.download-btn:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* --- ANIMACE TEXTU (Příprava) --- */
+.animate-text {
+    opacity: 0;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.from-left {
+    transform: translateX(-100px);
+}
+
+.from-right {
+    transform: translateX(100px);
+}
+
+/* Cílový stav po aktivaci JavaScriptem */
+.animate-text.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- CAROUSEL STYLY --- */
+.carousel-section {
+    justify-content: center; /* Vycentrování carouselu */
+    flex-direction: column;
+}
+
+.carousel-title-wrapper {
+    /* Zarovná obal nadpisu na levou stranu sekce */
+    align-self: flex-start; 
+    
+    /* Využívá šířku sekce, ale nechá prostor pro padding */
+    width: 80%; 
+    
+    /* Posune nadpis od horního okraje sekce, aby seděl pod navigační lištou */
+    margin-top: 150px; 
+    margin-bottom: 80px; /* Mezera mezi nadpisem a carouselem */
+}
+
+/* Zarovnání h2 uvnitř tohoto bloku doleva */
+.carousel-title-wrapper h2 {
+    text-align: left;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    width: 80%; /* Šířka zobrazeného okna */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-item-link {
+    text-decoration: none; /* Odstraní podtržení odkazů */
+    color: inherit;      /* Zajistí, že text zdědí barvu a nebude modrý (jako klasický odkaz) */
+    display: block;      /* Zajistí, že odkaz zabere celou plochu boxu, aby byl klikatelný */
+}
+
+.carousel-item {
+    flex-shrink: 0; 
+    width: 200px; /* Šířka položky */
+    text-align: center;
+    padding: 0px;
+    cursor: pointer;
+    margin: 0 30px; /* Mezera mezi položkami */
+}
+
+.carousel-item img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 10px solid var(--accent-color);
+    margin-bottom: 20px;
+}
+
+/* style.css */
+
+/* Stylování pro primární jméno */
+.carousel-item p {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 0px; /* Zajistí, že jméno nebude mít mezeru pod sebou */
+}
+
+/* Stylování pro NOVÝ podtext (<small> tag) */
+.carousel-item small {
+    display: block; /* Zajišťuje, že se podtext zobrazí na novém řádku */
+    font-size: 1.0em; /* Menší písmo */
+    color: #aaaaaa; /* Světlejší šedá barva */
+    margin-top: 2px; /* Malá mezera nad podtextem */
+    /* Zde můžete přidat i jiný font, pokud chcete: */
+    /* font-family: 'Roboto', sans-serif; */
+}
+
+.carousel-arrow {
+    /* Změna z fixed na ABSOLUTE: šipka se pohybuje s obsahem stránky */
+    position: absolute; 
+    
+    top: 90%;
+    transform: translateY(-50%);
+    background: rgba(188, 254, 255, 0); /* Zachováváme průhledné pozadí */
+    border: none;
+    color: var(--text-color);
+    font-size: 3em;
+    padding: 0px;
+    z-index: 50; 
+    cursor: pointer;
+    transition: background 0.3s;
+}
+/* ... zbytek vašich stylů pro :hover, left-arrow, right-arrow ... */
+/* TUTO TŘÍDU MUSÍTE MÍT V HTML KOLEM ŠIPECH A POLOŽEK CAROUSELU! */
+.carousel-container { 
+    position: relative; 
+    overflow: hidden; 
+    /* ... Další styly pro kontejner, např. šířka, padding ... */
+}
+
+.carousel-arrow.disabled {
+    opacity: 0.3;          /* Šipka je vidět, ale je šedivá */
+    pointer-events: none;  /* KLÍČOVÉ: ZABRÁNÍ KLIKNUTÍ na šipku, i když je vidět */
+    cursor: default;       
+}
+
+/* Případně, pokud chcete šipku úplně skrýt: */
+/*
+.carousel-arrow.disabled {
+    display: none;
+}
+*/
+.carousel-arrow:hover {
+    background: rgba(192, 224, 255, 0);
+}
+
+.left-arrow { left: 0px; }
+.right-arrow { right: 0px; }
+
+.content-wrapper.right-aligned {
+    /* Číslo (např. 150px) určuje, o kolik pixelů se blok posune dolů. */
+    margin-top: 250px; 
+    
+    /* Může být potřeba i pro mobilní zařízení, pokud už je tam nějaké zamykání zarovnání */
+    /* z-index: 1; */ 
+}
+
